@@ -1,10 +1,10 @@
 // Game constants
 let inputDir = {x: 0,y: 0};
-const foodSound = new Audio('Snake_burp1.mp3');
-const gameOverSound = new Audio('error.wav');
-const moveSound = new Audio('move.ogg');
-const musicSound = new Audio('music.mp3');
-let speed = 15;
+const foodSound = new Audio('../music/Snake_burp1.mp3')
+const gameOverSound = new Audio('../music/error.wav');
+const moveSound = new Audio('../music/move.ogg');
+const musicSound = new Audio('../music/music.mp3');
+let speed = 19;
 let score = 0;
 let lastPaintTime = 0;
 let snakeArr = [
@@ -64,7 +64,14 @@ function gameEngine() {
     // If you've eaten the food, increament the score and regenerate the food
     if (snakeArr[0].x === food.x && snakeArr[0].y === food.y) {
         score+=1;
-        scoreBox.innerHTML = "Score" + score;
+        if (score > highscoreVal)
+        {
+            highscoreVal = score;
+            localStorage.setItem("highscore", JSON.stringify(highscoreVal));
+            highscoreBox.innerHTML = "High Score: " + highscoreVal;
+
+        }
+        scoreBox.innerHTML = "Score: " + score;
         snakeArr.unshift({x: snakeArr[0].x + inputDir.x , y: snakeArr[0].y + inputDir.y})
         let a = 2;
         let b = 16;
@@ -108,6 +115,18 @@ function gameEngine() {
 
 
 // Main logic starts here
+// Displaying High Score
+let highscore = localStorage.getItem("highscore");
+if (highscore === null)
+{
+    highscoreVal = 0;
+    localStorage.setItem("highscore",JSON.stringify(highscoreVal));
+}
+else{
+    highscoreVal = JSON.parse(highscore);
+    highscoreBox.innerHTML = "High Score: " + highscore;
+}
+
 window.requestAnimationFrame(main);
 window.addEventListener('keydown', e => {
     inputDir = {x: 0, y: 1}  // Start the game

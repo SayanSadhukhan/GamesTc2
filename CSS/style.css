@@ -9,16 +9,34 @@
     background-size: 100vw 100vh;
     background-repeat: no-repeat;         /*[It was not required though] To stop appearing same image multiple times*/
     display: flex;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center;
+    align-items: center; */
 }
 
 #scoreBox{
     position: absolute;
-    top: 9px;
+    top: 35px;
     right: 200px;
     font-size: 30px;
     font-weight: bold;
+    font-family: 'Original Surfer', cursive;
+
+}
+h2{
+    color: rgb(130, 8, 167);
+    margin-top: 250px;
+    margin-left: 30px;
+    font-family: 'Original Surfer', cursive;
+    font-size:xx-large ;
+}
+
+#highscoreBox{
+    position: absolute;
+    top: 35px;
+    right: 1000px;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: 'Original Surfer', cursive;
 }
 
 #board{
@@ -29,6 +47,8 @@
     display: grid;
     grid-template-rows: repeat(18,1fr);
     grid-template-columns: repeat(18,1fr);
+    margin-left: 30px;
+    margin-top: 20px;
 }
 
 .head{
